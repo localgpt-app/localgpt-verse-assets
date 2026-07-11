@@ -1,0 +1,82 @@
+{
+  "version": 1,
+  "assets": [
+    {
+      "id": "anthurium_botany_01",
+      "name": "Anthurium",
+      "file": "anthurium_botany_01/anthurium_botany_01_1k.gltf",
+      "tier": "medium",
+      "mood": 2,
+      "scale": 1.3,
+      "license": "CC0",
+      "author": "Poly Haven",
+      "source": "https://polyhaven.com/a/anthurium_botany_01"
+    },
+    {
+      "id": "boulder_01",
+      "name": "Boulder",
+      "file": "boulder_01/boulder_01_1k.gltf",
+      "tier": "hero",
+      "mood": 0,
+      "scale": 1.4,
+      "license": "CC0",
+      "author": "Poly Haven",
+      "source": "https://polyhaven.com/a/boulder_01"
+    },
+    {
+      "id": "calathea_orbifolia_01",
+      "name": "Calathea",
+      "file": "calathea_orbifolia_01/calathea_orbifolia_01_1k.gltf",
+      "tier": "medium",
+      "mood": 2,
+      "scale": 1.3,
+      "license": "CC0",
+      "author": "Poly Haven",
+      "source": "https://polyhaven.com/a/calathea_orbifolia_01"
+    },
+    {
+      "id": "dead_quiver_trunk",
+      "name": "Quiver Tree Trunk",
+      "file": "dead_quiver_trunk/dead_quiver_trunk_1k.gltf",
+      "tier": "medium",
+      "mood": 0,
+      "scale": 1.0,
+      "license": "CC0",
+      "author": "Poly Haven",
+      "source": "https://polyhaven.com/a/dead_quiver_trunk"
+    },
+    {
+      "id": "dead_tree_trunk",
+      "name": "Dead Tree Trunk",
+      "file": "dead_tree_trunk/dead_tree_trunk_1k.gltf",
+      "tier": "hero",
+      "mood": 0,
+      "scale": 1.0,
+      "license": "CC0",
+      "author": "Poly Haven",
+      "source": "https://polyhaven.com/a/dead_tree_trunk"
+    },
+    {
+      "id": "lambis_shell",
+      "name": "Lambis Shell",
+      "file": "lambis_shell/lambis_shell_1k.gltf",
+      "tier": "scatter",
+      "mood": 2,
+      "scale": 2.5,
+      "license": "CC0",
+      "author": "Poly Haven",
+      "source": "https://polyhaven.com/a/lambis_shell"
+    },
+    {
+      "id": "tree_stump_02",
+      "name": "Tree Stump",
+      "file": "tree_stump_02/tree_stump_02_1k.gltf",
+      "tier": "medium",
+      "mood": 0,
+      "scale": 1.1,
+      "license": "CC0",
+      "author": "Poly Haven",
+      "source": "https://polyhaven.com/a/tree_stump_02"
+    }
+  ]
+}
