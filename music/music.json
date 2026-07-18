@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "license": "CC0-1.0",
+  "tracks": [
+    {
+      "title": "Amber Drift",
+      "artist": "Reverie",
+      "album": "Starter Worlds",
+      "file": "amber-drift.mp3",
+      "license": "CC0-1.0",
+      "bpm": 68
+    },
+    {
+      "title": "Tidewater",
+      "artist": "Reverie",
+      "album": "Starter Worlds",
+      "file": "tidewater.mp3",
+      "license": "CC0-1.0",
+      "bpm": 60
+    },
+    {
+      "title": "Nightglass",
+      "artist": "Reverie",
+      "album": "Starter Worlds",
+      "file": "nightglass.mp3",
+      "license": "CC0-1.0",
+      "bpm": 92
+    },
+    {
+      "title": "Emberfall",
+      "artist": "Reverie",
+      "album": "Starter Worlds",
+      "file": "emberfall.mp3",
+      "license": "CC0-1.0",
+      "bpm": 112
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+Reverie — Starter Worlds
+========================
+
+These four tracks are ORIGINAL algorithmic compositions, synthesized from
+scratch by ../generate_music.py (additive pads, sine sub-bass, plucked bells,
+soft percussion, Schroeder reverb). No sampled, recorded, or third-party
+copyrighted material is used in their creation.
+
+They are dedicated to the public domain under Creative Commons CC0 1.0:
+https://creativecommons.org/publicdomain/zero/1.0/
+
+You may use, modify, and redistribute them for any purpose without permission
+or attribution.
+
+  Amber Drift   — warm, 68 BPM
+  Tidewater     — watery, 60 BPM
+  Nightglass    — after-dark, 92 BPM
+  Emberfall     — driving, 112 BPM
+
+  Artist: Reverie   Album: Starter Worlds   License: CC0-1.0
+
+Regenerate with:  python3 generate_music.py
