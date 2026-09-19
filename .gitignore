@@ -1,1 +1,6 @@
 __pycache__/
+# Poly Haven downloads from fetch_polyhaven.py. Only the packed .glb files and
+# the manifest are committed; normalize.py packs a .glb from these on demand.
+models/*/*.gltf
+models/*/*.bin
+models/*/textures/

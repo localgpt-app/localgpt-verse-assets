@@ -13,10 +13,10 @@ packaged, so the app never downloads them at runtime.
 
 | Path | What it is |
 |------|------------|
-| `models/<id>/` | One model from [Poly Haven](https://polyhaven.com): the original `<id>_1k.gltf` with its `.bin` and `textures/`, plus `<id>.glb`, the single-file version Reverie loads |
+| `models/<id>/<id>.glb` | One model from [Poly Haven](https://polyhaven.com), packed into the single file Reverie loads |
 | `models/manifest.json` | The list of models Reverie reads: placement data and provenance |
 | `music/` | Four original tracks, `music.json` (the track list Reverie reads) and `NOTICE` |
-| `fetch_polyhaven.py` | Downloads the models from Poly Haven and rewrites the manifest |
+| `fetch_polyhaven.py` | Downloads the original models from Poly Haven (gitignored) and rewrites the manifest |
 | `normalize.py` | Packs each model into its `.glb`, and copies the shipped set into a Reverie checkout |
 | `generate_music.py` | Synthesizes the four tracks |
 
@@ -46,8 +46,10 @@ Each entry in `models/manifest.json` has:
 - `license`, `author` and `source`: provenance. Reverie's Credits screen shows
   each model's author and license.
 
-Only the manifest and the `.glb` files ship, about 165 MB. The originals stay
-here as the auditable source.
+The repository holds only what ships: the manifest and the `.glb` files, about
+170 MB. The original downloads are gitignored. `fetch_polyhaven.py` fetches
+them again when a model needs re-packing, and each entry's `source` link
+records where it came from.
 
 ### Music
 
@@ -96,13 +98,15 @@ You need Python 3, Node.js for `normalize.py` (it packs models with
 [LAME](https://lame.sourceforge.io) for `generate_music.py`.
 
 ```sh
-python3 fetch_polyhaven.py   # download the models and rewrite the manifest
+python3 fetch_polyhaven.py   # download the originals and rewrite the manifest
 python3 normalize.py         # pack new models, point the manifest at the .glb files
 python3 generate_music.py    # re-render the tracks and music.json
 ```
 
-Run `normalize.py` after every fetch: the fetch writes `.gltf` paths into the
-manifest, and normalizing points them back at the `.glb` files.
+The fetch downloads the originals of every model that isn't already on disk:
+on a fresh clone, all 52 (about 280 MB). Run `normalize.py` after every fetch:
+the fetch writes `.gltf` paths into the manifest, and normalizing points them
+back at the `.glb` files.
 
 `normalize.py` packs only the models that don't have a `.glb` yet; `--force`
 re-packs all of them. glTF-Transform is pinned to the version that built the
@@ -110,7 +114,7 @@ committed files, so re-packing doesn't drift with new releases.
 
 To add a model, pick a CC0 model on Poly Haven, add a
 `(slug, name, tier, mood, scale)` row to `PACK` in `fetch_polyhaven.py`, run
-both scripts, and commit the originals, the `.glb` and the manifest together.
+both scripts, and commit the new `.glb` with the updated manifest.
 
 ## License
 
