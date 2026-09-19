@@ -85,9 +85,9 @@ reverie-assets/    this repository
   cp music/*.mp3 music/music.json music/NOTICE ../reverie/assets/music/
   ```
 
-  `--sync` first packs any model whose `.glb` is out of date (which needs
-  Node.js), then empties its destination and copies the manifest and `.glb`
-  files in, so point it at the `models` folder itself.
+  `--sync` only copies files, so it needs neither Node.js nor the original
+  downloads. It empties its destination first, so point it at the `models`
+  folder itself.
 
 ## Regenerating
 
@@ -97,12 +97,16 @@ You need Python 3, Node.js for `normalize.py` (it packs models with
 
 ```sh
 python3 fetch_polyhaven.py   # download the models and rewrite the manifest
-python3 normalize.py         # pack them and point the manifest at the .glb files
+python3 normalize.py         # pack new models, point the manifest at the .glb files
 python3 generate_music.py    # re-render the tracks and music.json
 ```
 
 Run `normalize.py` after every fetch: the fetch writes `.gltf` paths into the
 manifest, and normalizing points them back at the `.glb` files.
+
+`normalize.py` packs only the models that don't have a `.glb` yet; `--force`
+re-packs all of them. glTF-Transform is pinned to the version that built the
+committed files, so re-packing doesn't drift with new releases.
 
 To add a model, pick a CC0 model on Poly Haven, add a
 `(slug, name, tier, mood, scale)` row to `PACK` in `fetch_polyhaven.py`, run
