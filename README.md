@@ -22,32 +22,44 @@ packaged, so the app never downloads them at runtime.
 
 ### Models
 
-52 models, 12–14 for each of Reverie's four base worlds, in three placement
-tiers: hero landmarks, medium props and ground scatter. Reverie's other four
-worlds reuse these for now.
+171 models across Reverie's eight worlds, in three placement tiers: hero
+landmarks, medium props and ground cover. Each model carries a semantic
+**kind** (`rock`, `tree`, `lamp`, …) — the small stable vocabulary Reverie's
+LLM agent picks from, with the concrete variant resolved per world and rotated
+so repeats differ. The four extended worlds layer their own accents on top of
+their base world's set.
 
 | World | Models | Examples |
 |-------|-------:|----------|
-| Ember Flats | 13 | boulders, a cliff, quiver trees, dry branches, a succulent |
-| Velvet Circuit | 14 | industrial pipes, an air duct, utility boxes, a boombox, a circuit board |
-| Tide Gardens | 13 | a coastal cliff, rocks, a bronze whale statue, a buoy, tropical plants |
-| Glass Expanse | 12 | moon rocks, quartz stones, a marble bust, porcelain and ceramics |
+| Ember Flats | 36 | boulders, cliffs, quiver trees, dry branches, desert flowers |
+| Velvet Circuit | 44 | an iron gate, factory facade, street lamps, crates, electronics, a street rat |
+| Tide Gardens | 32 | reef rocks, a wooden pier, shark and ray statues, shrubs, a ukulele |
+| Glass Expanse | 40 | moon rocks, chandeliers, statues, brass vases, a chess set |
+| Cinder Reach | 6 | a fire pit, a barrel stove, lanterns (plus the Ember Flats set) |
+| Mirage Circuit | 4 | a covered car, a suitcase, a ladder (plus the Velvet Circuit set) |
+| Abyss Terraces | 4 | a ship, treasure chests, a compass (plus the Tide Gardens set) |
+| Dawn Expanse | 5 | a jacaranda tree, dandelions, a garden gnome (plus the Glass Expanse set) |
 
 Each entry in `models/manifest.json` has:
 
 - `id` and `name`: the Poly Haven asset id and a display name
 - `file`: the path to the `.glb`, relative to `models/`
+- `kind`: the semantic kind (`rock`, `tree`, `lamp`, …) — the agent's
+  vocabulary; 19 kinds across the pack
 - `tier`: `hero`, `medium` or `scatter`
-- `mood`: the world, as a position in Reverie's list (0 Ember Flats, 1 Velvet
-  Circuit, 2 Tide Gardens, 3 Glass Expanse). If Reverie's first four worlds
-  change order, update `PACK` in `fetch_polyhaven.py` and regenerate.
+- `mood` and `mood_id`: the world, as a position in Reverie's list and as its
+  stable id (0 ember-flats, 1 velvet-circuit, 2 tide-gardens,
+  3 glass-expanse, 4 cinder-reach, 5 mirage-circuit, 6 abyss-terraces,
+  7 dawn-expanse). If Reverie's worlds change, update `MOOD_IDS` in
+  `fetch_polyhaven.py` and regenerate.
 - `scale` and `dims`: a per-model adjustment and the native size in metres.
   Reverie rescales each model to its tier's size.
 - `license`, `author` and `source`: provenance. Reverie's Credits screen shows
   each model's author and license.
 
-The repository holds only what ships: the manifest and the `.glb` files, about
-170 MB. The original downloads are gitignored. `fetch_polyhaven.py` fetches
+The repository holds only what ships: the manifest and the `.glb` files,
+about 480 MB. The original downloads (about 1 GB) are gitignored.
+`fetch_polyhaven.py` fetches
 them again when a model needs re-packing, and each entry's `source` link
 records where it came from.
 
@@ -104,7 +116,7 @@ python3 generate_music.py    # re-render the tracks and music.json
 ```
 
 The fetch downloads the originals of every model that isn't already on disk:
-on a fresh clone, all 52 (about 280 MB). Run `normalize.py` after every fetch:
+on a fresh clone, all 171 (about 1 GB). Run `normalize.py` after every fetch:
 the fetch writes `.gltf` paths into the manifest, and normalizing points them
 back at the `.glb` files.
 
@@ -113,8 +125,10 @@ re-packs all of them. glTF-Transform is pinned to the version that built the
 committed files, so re-packing doesn't drift with new releases.
 
 To add a model, pick a CC0 model on Poly Haven, add a
-`(slug, name, tier, mood, scale)` row to `PACK` in `fetch_polyhaven.py`, run
-both scripts, and commit the new `.glb` with the updated manifest.
+`(slug, name, kind, tier, mood, scale)` row to `PACK` in
+`fetch_polyhaven.py` (reusing an existing `kind` when one fits, so the
+agent's vocabulary stays small), run both scripts, and commit the new `.glb`
+with the updated manifest.
 
 ## License
 

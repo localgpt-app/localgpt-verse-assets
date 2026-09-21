@@ -119,7 +119,7 @@ def main() -> int:
     manifest = json.loads(manifest_path.read_text())
     packed = 0
     failures = []
-    for slug, _name, _tier, _mood, _scale in PACK:
+    for slug, *_rest in PACK:
         try:
             src_b, glb_b = normalize(slug, args.force)
         except Exception as e:  # noqa: BLE001
