@@ -1,0 +1,25 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    name: Manifests
+    runs-on: ubuntu-latest
+    steps:
+      # No LFS download: the .glb pointer files are enough to check that
+      # every file the manifest names exists.
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python3 -m py_compile fetch_polyhaven.py generate_music.py normalize.py
+      - run: python3 check.py
