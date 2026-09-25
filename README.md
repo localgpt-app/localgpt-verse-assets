@@ -146,3 +146,13 @@ Only add CC0 material. This repository has a single license, and Reverie ships
 these files in an open `assets/` folder beside its binary. Marketplace
 "royalty-free" models (TurboSquid, CGTrader, Fab) are ruled out for a second
 reason: their licenses forbid shipping in an extractable format.
+
+## In exported worlds
+
+LocalGPT Verse (formerly Reverie) can export a track's world in the shared
+LocalGPT world format (`VERSE_EXPORT_WORLD=<dir>`; see its README). Placed
+models are referenced as `models/<file>` from `models/manifest.json`, relative
+to the world's `assets/` directory, so a world published with its assets — on
+localgpt.world under `worlds/assets/models/`, or next to Gen's `world.ron` —
+needs only the `.glb` files it names copied there. Everything here is CC0, so
+that redistribution is unrestricted; the music's `NOTICE` travels with it.
