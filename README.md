@@ -19,6 +19,7 @@ packaged, so the app never downloads them at runtime.
 | `fetch_polyhaven.py` | Downloads the original models from Poly Haven (gitignored) and rewrites the manifest |
 | `normalize.py` | Packs each model into its `.glb`, and copies the shipped set into a Reverie checkout |
 | `generate_music.py` | Synthesizes the four tracks |
+| `check.py` | Checks that both manifests match the files in the repository; CI runs it on every change |
 
 ### Models
 
